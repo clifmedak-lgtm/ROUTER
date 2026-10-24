@@ -1,0 +1,104 @@
+{
+  "primary_section_count": 43,
+  "secondary_snippet_count": 14,
+  "comparisons": [
+    {
+      "snippet": "image-upload.tsx",
+      "matched_primary_path": "packages/web/src/web/components/image-upload.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 2418,
+      "snippet_chars": 2418
+    },
+    {
+      "snippet": "drive.tsx",
+      "matched_primary_path": "packages/web/src/web/pages/drive.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 17798,
+      "snippet_chars": 17798
+    },
+    {
+      "snippet": "admin.tsx",
+      "matched_primary_path": "packages/web/src/web/pages/admin.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 12249,
+      "snippet_chars": 12499
+    },
+    {
+      "snippet": "app.tsx",
+      "matched_primary_path": "packages/web/src/web/app.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 1287,
+      "snippet_chars": 1287
+    },
+    {
+      "snippet": "not-found.tsx",
+      "matched_primary_path": "packages/web/src/web/pages/not-found.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 491,
+      "snippet_chars": 491
+    },
+    {
+      "snippet": "format.ts",
+      "matched_primary_path": "packages/web/src/web/lib/format.ts",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 1682,
+      "snippet_chars": 1685
+    },
+    {
+      "snippet": "layout.tsx",
+      "matched_primary_path": "packages/web/src/web/components/layout.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 7696,
+      "snippet_chars": 7696
+    },
+    {
+      "snippet": "ride-map.tsx",
+      "matched_primary_path": "packages/web/src/web/components/ride-map.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 3397,
+      "snippet_chars": 3397
+    },
+    {
+      "snippet": "index.tsx",
+      "matched_primary_path": "packages/web/src/web/pages/index.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 17512,
+      "snippet_chars": 17858
+    },
+    {
+      "snippet": "sign-in.tsx",
+      "matched_primary_path": "packages/web/src/web/pages/sign-in.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 6104,
+      "snippet_chars": 6104
+    },
+    {
+      "snippet": "place-input.tsx",
+      "matched_primary_path": "packages/web/src/web/components/place-input.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 4098,
+      "snippet_chars": 4098
+    },
+    {
+      "snippet": "ride.tsx",
+      "matched_primary_path": "packages/web/src/web/pages/ride.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 9656,
+      "snippet_chars": 9656
+    },
+    {
+      "snippet": "trip.tsx",
+      "matched_primary_path": "packages/web/src/web/pages/trip.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 11234,
+      "snippet_chars": 11484
+    },
+    {
+      "snippet": "trips.tsx",
+      "matched_primary_path": "packages/web/src/web/pages/trips.tsx",
+      "same_after_whitespace_normalization": true,
+      "primary_chars": 2842,
+      "snippet_chars": 2842
+    }
+  ]
+}

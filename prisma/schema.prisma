@@ -1,0 +1,180 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  rider
+  driver
+  admin
+}
+
+enum VehicleType {
+  moto
+  eco
+  comfort
+  xl
+}
+
+enum DriverStatus {
+  pending
+  approved
+  rejected
+  suspended
+}
+
+enum RideStatus {
+  requested
+  accepted
+  arriving
+  in_progress
+  completed
+  cancelled
+}
+
+enum PaymentMethod {
+  cash
+  online
+}
+
+enum PaymentStatus {
+  unpaid
+  pending
+  paid
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String    @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  sessions      Session[]
+  accounts      Account[]
+  profile       Profile?
+  driver        Driver?
+  ridesAsRider  Ride[]    @relation("RideRider")
+  ridesAsDriver Ride[]    @relation("RideDriver")
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId], map: "session_userId_idx")
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId             String
+  userId                 String
+  user                   User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken            String?
+  refreshToken           String?
+  idToken                String?
+  accessTokenExpiresAt   DateTime?
+  refreshTokenExpiresAt  DateTime?
+  scope                  String?
+  password               String?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  @@index([userId], map: "account_userId_idx")
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier], map: "verification_identifier_idx")
+  @@map("verification")
+}
+
+model Profile {
+  userId    String   @id
+  role      UserRole @default(rider)
+  phone     String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("profiles")
+}
+
+model Driver {
+  userId         String      @id
+  phone          String
+  city           String
+  vehicleType    VehicleType
+  vehicleModel   String
+  vehicleColor   String
+  plate          String
+  licenseNumber  String
+  photoUrl       String?
+  licensePhotoUrl String?
+  status         DriverStatus @default(pending)
+  online         Boolean     @default(false)
+  lat            Float?
+  lng            Float?
+  ratingSum      Int         @default(0)
+  ratingCount    Int         @default(0)
+  createdAt      DateTime    @default(now())
+  user           User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("drivers")
+}
+
+model Ride {
+  id             Int           @id @default(autoincrement())
+  riderId        String
+  driverId       String?
+  rideType       VehicleType
+  pickupAddress  String
+  pickupLat      Float
+  pickupLng      Float
+  dropAddress    String
+  dropLat        Float
+  dropLng        Float
+  distanceKm     Float
+  durationMin    Int
+  /// Fare in whole XAF francs.
+  fare           Int
+  status         RideStatus    @default(requested)
+  paymentMethod  PaymentMethod @default(cash)
+  paymentStatus  PaymentStatus @default(unpaid)
+  paymentRef     String?
+  riderPhone     String?
+  riderRating    Int?
+  cancelledBy    String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  rider          User          @relation("RideRider", fields: [riderId], references: [id], onDelete: Cascade)
+  driver         User?         @relation("RideDriver", fields: [driverId], references: [id], onDelete: SetNull)
+
+  @@index([riderId, createdAt])
+  @@index([driverId, status])
+  @@index([status, createdAt])
+  @@map("rides")
+}
