@@ -1,5 +1,9 @@
+
+"use client";
+
 import { useState } from "react";
-import { Link, useLocation } from "wouter";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "motion/react";
 import {
   ArrowRight,
@@ -57,7 +61,7 @@ const FAQ = [
 ];
 
 export default function Index() {
-  const [, navigate] = useLocation();
+  const router = useRouter();
   const [to, setTo] = useState("");
   const [faq, setFaq] = useState<number | null>(0);
 
@@ -96,7 +100,7 @@ export default function Index() {
             variants={fade}
             onSubmit={(e) => {
               e.preventDefault();
-              navigate(`/ride${to.trim() ? `?to=${encodeURIComponent(to.trim())}` : ""}`);
+              router.push(`/ride${to.trim() ? `?to=${encodeURIComponent(to.trim())}` : ""}`);
             }}
             className="mx-auto mt-10 flex max-w-xl flex-col gap-3 rounded-2xl bg-white/[0.07] p-2 backdrop-blur sm:flex-row"
           >
@@ -114,7 +118,7 @@ export default function Index() {
             </button>
           </motion.form>
           <motion.div custom={4} initial="hidden" animate="show" variants={fade} className="mt-5">
-            <Link to="/drive" className="text-sm text-white/70 underline-offset-4 hover:text-white hover:underline">
+            <Link href="/drive" className="text-sm text-white/70 underline-offset-4 hover:text-white hover:underline">
               Want to earn? Drive with Router →
             </Link>
           </motion.div>
@@ -209,7 +213,7 @@ export default function Index() {
                     </li>
                   ))}
                 </ol>
-                <Link to="/ride" className="mt-10 inline-flex h-12 items-center gap-2 rounded-xl bg-forest px-6 font-medium text-white transition hover:bg-forest-glow">
+                <Link href="/ride" className="mt-10 inline-flex h-12 items-center gap-2 rounded-xl bg-forest px-6 font-medium text-white transition hover:bg-forest-glow">
                   Book a ride now <ArrowRight className="size-4" />
                 </Link>
               </div>
@@ -276,7 +280,7 @@ export default function Index() {
                 </div>
               ))}
             </div>
-            <Link to="/drive" className="mt-10 inline-flex h-12 items-center gap-2 rounded-xl bg-lime px-6 font-medium text-ink transition hover:bg-lime-dark">
+            <Link href="/drive" className="mt-10 inline-flex h-12 items-center gap-2 rounded-xl bg-lime px-6 font-medium text-ink transition hover:bg-lime-dark">
               Apply to drive <ArrowRight className="size-4" />
             </Link>
           </div>
@@ -331,10 +335,10 @@ export default function Index() {
               <h2 className="font-display text-4xl font-normal text-white md:text-5xl">Ready when you are</h2>
               <p className="mx-auto mt-4 max-w-md text-white/70">Create your free account and take your first Router ride today.</p>
               <div className="mt-8 flex flex-wrap justify-center gap-3">
-                <Link to="/ride" className="inline-flex h-12 items-center rounded-xl bg-lime px-6 font-medium text-ink hover:bg-lime-dark">
+                <Link href="/ride" className="inline-flex h-12 items-center rounded-xl bg-lime px-6 font-medium text-ink hover:bg-lime-dark">
                   Book a ride
                 </Link>
-                <Link to="/drive" className="inline-flex h-12 items-center rounded-xl bg-white px-6 font-medium text-ink hover:bg-cream">
+                <Link href="/drive" className="inline-flex h-12 items-center rounded-xl bg-white px-6 font-medium text-ink hover:bg-cream">
                   Become a driver
                 </Link>
               </div>
