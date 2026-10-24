@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useLocation, useSearch } from "wouter";
+import { useLocation, useSearch } from "wouter";
 import { Logo, Spinner } from "../components/layout";
 import { authClient } from "../lib/auth";
 
@@ -115,7 +115,7 @@ export default function SignInPage() {
             </button>
           </p>
           <p className="mt-10 text-center text-xs text-muted">
-            <Link to="/" className="hover:text-ink">← Back to home</Link>
+            <a href="/" className="hover:text-ink">← Back to home</a>
           </p>
         </div>
       </div>

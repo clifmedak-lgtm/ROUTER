@@ -31,14 +31,14 @@ function History() {
       {rides.length === 0 ? (
         <div className="card p-10 text-center">
           <p className="text-muted">No trips yet.</p>
-          <Link to="/ride" className="mt-4 inline-flex h-11 items-center rounded-xl bg-lime px-5 font-medium text-ink">
+          <a href="/ride" className="mt-4 inline-flex h-11 items-center rounded-xl bg-lime px-5 font-medium text-ink">
             Book your first ride
-          </Link>
+          </a>
         </div>
       ) : (
         <div className="card divide-y divide-line p-0">
           {rides.map((r) => (
-            <Link key={r.id} to={`/ride/${r.id}`} className="flex items-center gap-4 p-4 transition hover:bg-cream/60 md:p-5">
+            <a key={r.id} href={`/ride/${r.id}`} className="flex items-center gap-4 p-4 transition hover:bg-cream/60 md:p-5">
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
                   <span className="text-sm font-medium">{RIDE_META[r.rideType].label}</span>
@@ -51,7 +51,7 @@ function History() {
               </div>
               <div className="font-display font-semibold tabular">{xaf(r.fare)}</div>
               <ChevronRight className="size-4 text-muted" />
-            </Link>
+            </a>
           ))}
         </div>
       )}

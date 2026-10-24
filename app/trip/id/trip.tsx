@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useSearch } from "wouter";
+import { useParams, useSearch } from "wouter";
 import { Check, Phone, Star, X, Smartphone, Banknote, CircleCheck } from "lucide-react";
 import { PageHeader, Protected, Shell, Spinner } from "../components/layout";
 import { RideMap } from "../components/ride-map";
@@ -214,9 +214,9 @@ function Trip({ id }: { id: number }) {
               </button>
             )}
             {["completed", "cancelled"].includes(r.status) && (
-              <Link to="/ride" className="flex h-11 flex-1 items-center justify-center rounded-xl bg-lime text-sm font-medium text-ink hover:bg-lime-dark">
+              <a href="/ride" className="flex h-11 flex-1 items-center justify-center rounded-xl bg-lime text-sm font-medium text-ink hover:bg-lime-dark">
                 Book another ride
-              </Link>
+              </a>
             )}
           </div>
         </div>
